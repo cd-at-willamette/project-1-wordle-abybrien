@@ -1,8 +1,8 @@
 ########################################
-# Name:
-# Collaborators (if any):
+# Name: Abygale Brien
+# Collaborators (if any): QUAD People
 # GenAI Transcript (if any):
-# Estimated time spent (hr):
+# Estimated time spent (hr): 1.5 Hours
 # Description of any added extensions:
 ########################################
 
@@ -15,14 +15,27 @@ def wordle():
 
     def enter_action():
         # What should happen when RETURN/ENTER is pressed.
-        gw.show_message("You need to implement this method")
-
-
+        row_number = gw.get_current_row()
+        string = "" # Empty string to add stuff to it
+        for i in range(N_COLS):
+           w = gw.get_square_letter(row_number, i)
+           string += w
+        is_english_word(string)
+        if is_english_word(string) and len(string) == 5:
+            gw.show_message("")
+        else:
+            gw.show_message("Not In Word List")
+        
+    
     gw = WordleGWindow()
     gw.add_enter_listener(enter_action)
-
-
-
+    word = "TRAIN"
+    gw.set_square_letter(0, 0, word[0])
+    gw.set_square_letter(0, 1, word[1])
+    gw.set_square_letter(0, 2, word[2])
+    gw.set_square_letter(0, 3, word[3])
+    gw.set_square_letter(0, 4, word[4])
+    
 
 # Startup boilerplate
 if __name__ == "__main__":
