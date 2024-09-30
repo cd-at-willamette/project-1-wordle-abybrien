@@ -17,7 +17,7 @@ def wordle(): # The main function to play the Wordle game.
         answer = random.choice(ENGLISH_WORDS) # choose random word import that is 5 letters long
     print(answer) # Gives a visual base point 
     
-    # answer = "sassy" # Practice word for duplicate letters 
+    #answer = "glass" # Practice word for duplicate letters 
 
     def enter_action(): # What should happen when RETURN/ENTER is pressed
         # CHECKS TO SEE IF ITS WORD LIST OR NOT --------------------------------------
@@ -41,20 +41,18 @@ def wordle(): # The main function to play the Wordle game.
             for i in range(N_COLS):
                 if guess[i] == answer[i]:
                     gw.set_square_color(gw.get_current_row(), i, CORRECT_COLOR) # guess[i] refers to the letter typed into box in wordle
-                    unmatched = unmatched.replace(answer[i], "", 1) # Gets rid of duplicate letters
+                    unmatched = unmatched.replace(guess[i], "", 1) # Gets rid of duplicate letters
             for i in range(N_COLS): 
             # COLORING SQUARES LETTERS YELLOW --------------------------------------
                 if guess[i] in unmatched and gw.get_square_color(gw.get_current_row(), i) != CORRECT_COLOR: # Take whatever letter that is and see if it's in that unmatched variable and it not already green
                     gw.set_square_color(gw.get_current_row(), i, PRESENT_COLOR)
-                    if gw.get_square_color(gw.get_current_row(), i) != CORRECT_COLOR: 
-                        gw.set_square_color(gw.get_current_row(), i, PRESENT_COLOR) # Come back too!
-                    unmatched = unmatched.replace(answer[i], "", 1) # Gets rid of duplicate letters
+                    unmatched = unmatched.replace(guess[i], "", 1)
             for i in range(N_COLS): 
             # COLORING SQUARE LETTERS GREY -----------------------------------------
                 if guess[i] != answer[i] and gw.get_square_color(gw.get_current_row(), i) != PRESENT_COLOR:
                     gw.set_square_color(gw.get_current_row(), i, MISSING_COLOR) # guess[i] refers to the letter typed into box in wordle
-                    unmatched = unmatched.replace(answer[i], "", 1) # Gets rid of duplicate letters
-                # COLORING THE KEYS --------------------------------------------------------
+                    unmatched = unmatched.replace(guess[i], "", 1) # Gets rid of duplicate letters
+            # COLORING THE KEYS --------------------------------------------------------
             for i in range(N_COLS):
                 letter = guess[i]
                 color = gw.get_square_color(gw.get_current_row(), i)
